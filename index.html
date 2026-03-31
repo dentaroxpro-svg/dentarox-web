@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dentarox | Péče o zuby a krásný úsměv</title>
+  <meta name="description" content="Dentarox pomáhá lidem pečovat o zuby, úsměv a každodenní zubní hygienu jednoduše a pohodlně." />
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1830;
+      --panel:rgba(255,255,255,0.08);
+      --panel2:rgba(255,255,255,0.12);
+      --line:rgba(255,255,255,0.10);
+      --text:#f5f9ff;
+      --muted:#bed1ea;
+      --blue1:#89d3ff;
+      --blue2:#3f84ff;
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(97,178,255,.20), transparent 28%),
+        radial-gradient(circle at top right, rgba(80,140,255,.14), transparent 26%),
+        linear-gradient(180deg,#07111f 0%,#0a1527 45%,#0b1830 100%);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+    .glass{
+      background:var(--panel);
+      border:1px solid var(--line);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(7,17,31,.75);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      font-size:1.2rem;
+    }
+
+    .brand-mark{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue1),var(--blue2));
+      box-shadow:0 10px 24px rgba(63,132,255,.35);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .nav-links a:hover{color:#fff}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 20px;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+      border:1px solid transparent;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--blue1),var(--blue2));
+      color:#fff;
+      box-shadow:0 14px 28px rgba(63,132,255,.35);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .hero{padding:56px 0 34px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-left,.hero-right{border-radius:30px;padding:34px}
+
+    .eyebrow{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dceaff;
+      margin-bottom:18px;
+      font-size:.92rem;
+    }
+
+    .hero h1{
+      font-size:clamp(2.3rem,5vw,4.5rem);
+      line-height:1.04;
+      letter-spacing:-1.4px;
+      margin-bottom:18px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:680px;
+      margin-bottom:26px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .mini-box{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .mini-box strong{display:block;margin-bottom:4px;font-size:1.08rem}
+    .mini-box span{color:var(--muted);font-size:.95rem}
+
+    .hero-image,
+    .section-image,
+    .detail-image{
+      width:100%;
+      display:block;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .image-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .image-card{
+      border-radius:24px;
+      padding:18px;
+    }
+
+    .section{padding:34px 0}
+    .section-head{text-align:center;margin-bottom:28px}
+    .section-head h2{
+      font-size:clamp(2rem,4vw,3rem);
+      margin-bottom:10px;
+      letter-spacing:-1px;
+    }
+    .section-head p{
+      max-width:760px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+
+    .cards-3,.cards-2{display:grid;gap:18px}
+    .cards-3{grid-template-columns:repeat(3,1fr)}
+    .cards-2{grid-template-columns:repeat(2,1fr)}
+
+    .card{
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .icon{
+      width:56px;height:56px;
+      border-radius:18px;
+      display:grid;place-items:center;
+      font-size:1.45rem;
+      margin-bottom:18px;
+      background:linear-gradient(135deg,rgba(137,211,255,.24),rgba(63,132,255,.20));
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .card h3{font-size:1.24rem;margin-bottom:10px}
+    .card p{color:var(--muted)}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+    .list{list-style:none;display:grid;gap:14px}
+    .list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+    }
+    .tick{
+      flex:0 0 28px;height:28px;
+      border-radius:999px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--blue1),var(--blue2));
+      color:#fff;font-weight:900;
+      margin-top:1px;
+      box-shadow:0 10px 18px rgba(63,132,255,.28);
+    }
+
+    .how-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .step{
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .step-number{
+      width:42px;height:42px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      font-weight:800;
+      margin-bottom:14px;
+    }
+
+    .step h3{margin-bottom:8px}
+    .step p{color:var(--muted)}
+
+    .forms-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .form-card{
+      border-radius:26px;
+      padding:26px;
+    }
+
+    .form-card h3{font-size:1.45rem;margin-bottom:8px}
+    .form-card p{color:var(--muted);margin-bottom:18px}
+
+    .form-grid{display:grid;gap:14px}
+    .input-group label{
+      display:block;
+      font-weight:700;
+      margin-bottom:7px;
+      color:#f4f8ff;
+    }
+
+    .input-group input,
+    .input-group textarea,
+    .input-group select{
+      width:100%;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+      border-radius:16px;
+      padding:14px 15px;
+      outline:none;
+      font-size:.98rem;
+    }
+
+    .input-group input::placeholder,
+    .input-group textarea::placeholder{
+      color:#a8bddb;
+    }
+
+    .input-group textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus,
+    .input-group select:focus{
+      border-color:rgba(137,211,255,.6);
+      box-shadow:0 0 0 4px rgba(137,211,255,.12);
+    }
+
+    .mini-note{
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:10px;
+    }
+
+    footer{
+      padding:30px 0 50px;
+      text-align:center;
+      color:#a6bcda;
+    }
+
+    .footer-line{
+      width:min(var(--max),calc(100% - 32px));
+      margin:0 auto 20px;
+      height:1px;
+      background:rgba(255,255,255,.08);
+    }
+
+    @media (max-width:1080px){
+      .hero-grid,.cards-3,.cards-2,.split,.how-grid,.forms-wrap,.image-grid{grid-template-columns:1fr}
+      .hero-points{grid-template-columns:1fr}
+    }
+
+    @media (max-width:760px){
+      .nav{padding:14px 0;flex-direction:column;align-items:flex-start}
+      .hero-left,.hero-right,.card,.step,.form-card,.image-card{padding:20px}
+      .hero{padding-top:28px}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="brand-mark">D</span>
+        <span>Dentarox</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#produkty">Proč Dentarox</a>
+        <a href="#vyhody">Výhody</a>
+        <a href="#jaktofunguje">Jak to funguje</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#kariera">Práce</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left glass">
+          <div class="eyebrow">🦷 Moderní péče o zuby a krásný úsměv</div>
+          <h1>Zubní hygiena, která dává smysl každý den</h1>
+          <p>
+            Dentarox pomáhá běžným lidem pečovat o zuby jednoduše, pohodlně a s důrazem
+            na čistotu, zdraví a lepší pocit z vlastního úsměvu.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#kontakt" class="btn btn-primary">Objednat nyní</a>
+            <a href="#produkty" class="btn btn-secondary">Zjistit více</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="mini-box">
+              <strong>Každodenní péče</strong>
+              <span>Jednoduché řešení pro čistší a zdravější zuby.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Důvěra</strong>
+              <span>Srozumitelně, lidsky a bez zbytečného tlaku.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Komfort</strong>
+              <span>Pomůžeme vám vybrat to, co dává smysl právě vám.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right glass">
+          <img src="produkt-baleni.png" alt="Elektrický kartáček v balení" class="hero-image">
+        </div>
+      </div>
+    </section>
+
+    <p style="margin-top:15px; text-align:center; color:#a8bddb;">
+      ✔ 2× náhradní hlavice &nbsp;&nbsp; ✔ LED bělení &nbsp;&nbsp; ✔ Nabíjení
+    </p>
+
+    <section class="section" id="produkty">
+      <div class="container">
+        <div class="section-head">
+          <h2>Co vám Dentarox přináší</h2>
+          <p>
+            Není to složité. Cílem je, abyste měli lepší pocit ze své zubní hygieny,
+            lepší přehled a řešení, které pro vás bude dávat smysl.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card glass">
+            <div class="icon">✨</div>
+            <h3>Svěžejší pocit</h3>
+            <p>
+              Péče o zuby není jen o vzhledu. Je to i o každodenním pohodlí,
+              čistotě a lepším pocitu po celý den.
+            </p>
+          </article>
+
+          <article class="card glass">
+            <div class="icon">🦷</div>
+            <h3>Lepší hygiena</h3>
+            <p>
+              Správně zvolená péče pomáhá vytvořit jednoduchou rutinu, kterou zvládne opravdu každý.
+            </p>
+          </article>
+
+          <article class="card glass">
+            <div class="icon">💙</div>
+            <h3>Individuální přístup</h3>
+            <p>
+              Každý člověk je jiný. Proto je důležité vybrat řešení, které sedí právě vašim potřebám.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>5 režimů čištění</h2>
+          <p>
+            Vyber si způsob čištění podle toho, co ti nejvíc vyhovuje.
+          </p>
+        </div>
+
+        <div class="card glass">
+          <img src="5-rezimu.png" alt="Pět režimů čištění" class="section-image">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Proč tenhle kartáček?</h2>
+          <p>Výsledek, který uvidíš i ucítíš.</p>
+        </div>
+
+        <div class="cards-3">
+          <div class="card glass">
+            <h3>⚡ 31 000 vibrací</h3>
+            <p>Hloubkové čištění, které odstraní nečistoty lépe než běžný kartáček.</p>
+          </div>
+
+          <div class="card glass">
+            <h3>🦷 Viditelně bělejší zuby</h3>
+            <p>Pravidelným používáním dosáhneš bělejšího a čistšího úsměvu.</p>
+          </div>
+
+          <div class="card glass">
+            <h3>💧 Šetrný k dásním</h3>
+            <p>Jemné režimy zajistí péči bez podráždění.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Produkt detailně</h2>
+          <p>
+            Podívej se na detail kartáčku a možnost LED bělení zubů.
+          </p>
+        </div>
+
+        <div class="image-grid">
+          <div class="image-card glass">
+            <img src="kartacek-detail.png" alt="Detail elektrického kartáčku" class="detail-image">
+          </div>
+
+          <div class="image-card glass">
+            <img src="Led-belici.png" alt="LED bělení zubů" class="detail-image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skvrny od kávy nebo kouření?</h2>
+          <p>
+            Každodenní věci jako káva, čaj nebo cigarety zanechávají na zubech
+            tmavé skvrny, které nejdou běžným kartáčkem úplně odstranit.
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="card glass">
+            <h3>☕ Co způsobuje zabarvení</h3>
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Káva a čaj postupně barví zuby</span></li>
+              <li><span class="tick">✓</span><span>Kouření zanechává tmavé skvrny</span></li>
+              <li><span class="tick">✓</span><span>Běžné čištění nestačí na hlubší nečistoty</span></li>
+            </ul>
+          </div>
+
+          <div class="card glass">
+            <h3>💡 Řešení: LED bělení</h3>
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Pomáhá zesvětlit zuby už po pár použitích</span></li>
+              <li><span class="tick">✓</span><span>Jednoduché použití doma</span></li>
+              <li><span class="tick">✓</span><span>Kombinace s kartáčkem = lepší výsledek</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="vyhody">
+      <div class="container split">
+        <div class="card glass">
+          <div class="section-head" style="text-align:left;margin-bottom:18px;">
+            <h2 style="font-size:2.1rem;margin-bottom:10px;">Proč si vybrat Dentarox</h2>
+            <p style="margin:0;">Čistý moderní přístup, který působí důvěryhodně a lidsky.</p>
+          </div>
+
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Srozumitelná komunikace bez zbytečného nátlaku.</span></li>
+            <li><span class="tick">✓</span><span>Zaměření na běžné lidi, ne na firmy a korporát.</span></li>
+            <li><span class="tick">✓</span><span>Péče o úsměv, čistotu a každodenní pohodlí.</span></li>
+            <li><span class="tick">✓</span><span>Moderní značka, která působí čistě a profesionálně.</span></li>
+          </ul>
+        </div>
+
+        <div class="card glass">
+          <div class="section-head" style="text-align:left;margin-bottom:18px;">
+            <h2 style="font-size:2.1rem;margin-bottom:10px;">Pro koho je to</h2>
+            <p style="margin:0;">Pro každého, kdo chce mít lepší pocit ze svých zubů a úsměvu.</p>
+          </div>
+
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Pro lidi, kteří chtějí lepší rutinu v péči o zuby.</span></li>
+            <li><span class="tick">✓</span><span>Pro ty, kdo chtějí působit upraveněji a cítit se lépe.</span></li>
+            <li><span class="tick">✓</span><span>Pro každého, kdo chce poradit s vhodným řešením.</span></li>
+            <li><span class="tick">✓</span><span>Pro zákazníky, kteří chtějí jednoduchost a důvěru.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jaktofunguje">
+      <div class="container">
+        <div class="section-head">
+          <h2>Jak to funguje</h2>
+          <p>
+            Jednoduchá cesta od zájmu ke kontaktu. Žádný chaos, jen jasný postup.
+          </p>
+        </div>
+
+        <div class="how-grid">
+          <div class="step glass">
+            <div class="step-number">01</div>
+            <h3>Prohlédnete si nabídku</h3>
+            <p>Získáte základní přehled a zjistíte, jestli je Dentarox pro vás.</p>
+          </div>
+
+          <div class="step glass">
+            <div class="step-number">02</div>
+            <h3>Vyplníte formulář</h3>
+            <p>Napíšete, že máte zájem nebo vám poradíme s výběrem.</p>
+          </div>
+
+          <div class="step glass">
+            <div class="step-number">03</div>
+            <h3>Ozveme se vám</h3>
+            <p>Domluvíme se lidsky, jednoduše a bez zbytečného tlaku.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Mám zájem</h2>
+          <p>
+            Pokud vás Dentarox zaujal, vyplňte formulář a ozveme se vám.
+          </p>
+        </div>
+
+        <div class="forms-wrap">
+          <div class="form-card glass">
+            <h3>Chci se dozvědět více</h3>
+            <p>
+              Nechte nám na sebe kontakt a my se vám ozveme s dalšími informacemi.
+            </p>
+
+            <form action="https://formspree.io/f/mgopyagd" method="POST" class="form-grid">
+              <input type="hidden" name="_subject" value="Nový zájem Dentarox" />
+
+              <div class="input-group">
+                <label for="clientName">Jméno</label>
+                <input name="jmeno" id="clientName" type="text" placeholder="Vaše jméno" required />
+              </div>
+
+              <div class="input-group">
+                <label for="clientEmail">Email</label>
+                <input name="email" id="clientEmail" type="email" placeholder="vas@email.cz" required />
+              </div>
+
+              <div class="input-group">
+                <label for="clientPhone">Telefon</label>
+                <input name="telefon" id="clientPhone" type="tel" placeholder="+420..." required />
+              </div>
+
+              <div class="input-group">
+                <label for="clientNeed">S čím vám můžeme pomoci</label>
+                <textarea name="zprava" id="clientNeed" placeholder="Např. chci poradit, mám zájem o nabídku, chci více informací..." required></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Mám zájem</button>
+            </form>
+          </div>
+
+          <div class="form-card glass">
+            <h3>Co můžete čekat</h3>
+            <p>
+              Dentarox je postavený na tom, aby komunikace byla příjemná,
+              srozumitelná a užitečná pro běžného zákazníka.
+            </p>
+
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Přátelský a lidský přístup</span></li>
+              <li><span class="tick">✓</span><span>Jednoduché vysvětlení bez složitostí</span></li>
+              <li><span class="tick">✓</span><span>Pomoc s výběrem a orientací</span></li>
+              <li><span class="tick">✓</span><span>Rychlý kontakt po odeslání formuláře</span></li>
+            </ul>
+
+            <p style="text-align:center; margin-top:20px; color:#a8bddb;">
+              ✔ Rychlé doručení &nbsp;&nbsp; ✔ Jednoduché použití &nbsp;&nbsp; ✔ Výsledek už po pár dnech
+            </p>
+
+            <p class="mini-note" style="margin-top:18px;">
+              Po odeslání formuláře vám přijde potvrzení a my se vám následně ozveme.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kariera">
+      <div class="container">
+        <div class="section-head">
+          <h2>Zájem o práci</h2>
+          <p>
+            Úplně dole necháme i náborovou sekci pro lidi, kteří by chtěli pracovat v Dentarox.
+          </p>
+        </div>
+
+        <div class="forms-wrap">
+          <div class="form-card glass">
+            <h3>Chci pracovat v Dentarox</h3>
+            <p>
+              Máš zájem o práci v call centru? Vyplň formulář a ozveme se ti.
+            </p>
+
+            <form action="https://formspree.io/f/xjgprwyv" method="POST" class="form-grid">
+              <input type="hidden" name="_subject" value="Zájem o práci Dentarox" />
+
+              <div class="input-group">
+                <label for="jobName">Jméno a příjmení</label>
+                <input name="jmeno" id="jobName" type="text" placeholder="Vaše jméno" required />
+              </div>
+
+              <div class="input-group">
+                <label for="jobEmail">Email</label>
+                <input name="email" id="jobEmail" type="email" placeholder="vas@email.cz" required />
+              </div>
+
+              <div class="input-group">
+                <label for="jobPhone">Telefon</label>
+                <input name="telefon" id="jobPhone" type="tel" placeholder="+420..." required />
+              </div>
+
+              <div class="input-group">
+                <label for="jobExperience">Zkušenosti</label>
+                <select name="zkusenosti" id="jobExperience" required>
+                  <option value="">Vyberte možnost</option>
+                  <option>Bez zkušeností</option>
+                  <option>Mám základní zkušenosti</option>
+                  <option>Mám zkušenosti z call centra</option>
+                  <option>Mám zkušenosti s prodejem</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="jobReason">Proč máš zájem</label>
+                <textarea name="duvod" id="jobReason" placeholder="Napiš krátce, proč chceš pracovat právě u nás..." required></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Odeslat žádost</button>
+            </form>
+          </div>
+
+          <div class="form-card glass">
+            <h3>Koho hledáme</h3>
+            <p>
+              Hledáme lidi, kteří umí komunikovat, chtějí růst a mají chuť pracovat s lidmi.
+            </p>
+
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Příjemné vystupování</span></li>
+              <li><span class="tick">✓</span><span>Spolehlivost a chuť pracovat</span></li>
+              <li><span class="tick">✓</span><span>Zájem o prodej a komunikaci</span></li>
+              <li><span class="tick">✓</span><span>Motivace učit se a vydělávat</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-line"></div>
+    <div class="container">
+      <p>© 2026 Dentarox. Péče o zuby, úsměv a důvěru.</p>
+    </div>
+  </footer>
+</body>
+</html>
